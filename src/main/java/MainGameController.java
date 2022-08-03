@@ -1,12 +1,9 @@
-import gamewindow.GameWindow;
-import gamewindow.GameWindowSingleton;
-import gamegrid.GameGrid;
-import gamegrid.GameGridSingleton;
+import gamewindow.*;
 
-import java.awt.*;
+import snake.SnakeMovement;
 
 public class MainGameController {
-    final int numSquaresInSide = 15;
+    final int numSquaresInSide = 10;
     final int sizeOfSquares = 50;
 
     public MainGameController(){
@@ -14,8 +11,7 @@ public class MainGameController {
 
         gameWindow.setVisible(true);
 
-        GameGrid gameGrid = GameGridSingleton.getInstance();
-        gameGrid.changeSquareColor(0, Color.CYAN);
-        System.out.println(gameGrid);
+        new SnakeMovement();
+
     }
 }

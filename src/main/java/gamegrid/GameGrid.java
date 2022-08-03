@@ -18,7 +18,7 @@ public class GameGrid {
         }
         //Adding JPanels of List to Container
         for(JPanel jPanel : listSquares){
-            jPanel.setBackground(Color.BLACK);
+            jPanel.setBackground(Color.WHITE);
             containerSquares.add(jPanel);
         }
     }
