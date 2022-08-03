@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 public class SnakeMovement {
     //VARIABLES
     Snake snake = new Snake();
-    boolean whileloop = true;
+    private boolean whileloop = true;
 
     //CONSTRUCTOR
     public SnakeMovement(){
@@ -18,7 +18,7 @@ public class SnakeMovement {
                 case 39 -> snake.goRight();
                 case 40 -> snake.goDown();
             }
-            snake.updateBodySnake();
+            snake.movement();
             System.out.println(snake.position);
 
             //Delay Code
@@ -29,5 +29,10 @@ public class SnakeMovement {
             }
         }
 
+    }
+
+    //SETTER
+    public void setWhileloop(boolean whileloop) {
+        this.whileloop = whileloop;
     }
 }

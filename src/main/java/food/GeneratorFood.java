@@ -15,7 +15,7 @@ public class GeneratorFood {
     Random random = new Random();
     Color colorRandomSquare;
 
-    boolean whileLoop = true;
+    private boolean whileLoop = true;
     int randomIndex;
     int randomTime;
 
@@ -38,5 +38,10 @@ public class GeneratorFood {
                 System.out.println("Interrupted");
             }
         }
+    }
+
+    //SETTER
+    public void setWhileLoop(boolean whileLoop) {
+        this.whileLoop = whileLoop;
     }
 }

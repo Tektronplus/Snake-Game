@@ -1,7 +1,7 @@
-import food.GeneratorFood;
+import food.GeneratorFoodSingleton;
 import gamewindow.*;
 
-import snake.SnakeMovement;
+import snake.SnakeMovementSingleton;
 
 public class MainGameController {
     final int numSquaresInSide = 10;
@@ -18,14 +18,14 @@ public class MainGameController {
             @Override
             public void run() {
                 super.run();
-                new SnakeMovement();
+                SnakeMovementSingleton.getInstance();
             }
         };
         Thread thread02 = new Thread(){
             @Override
             public void run() {
                 super.run();
-                new GeneratorFood();
+                GeneratorFoodSingleton.getInstance();
             }
         };
 
