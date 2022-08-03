@@ -12,16 +12,20 @@ public class Snake extends Character {
     List<Integer> bodySnake = new ArrayList<>(List.of(0));
     GameGrid gameGrid = GameGridSingleton.getInstance();
 
+    boolean isThereFood;
+
     //CONSTRUCTOR
     public Snake(){
     }
 
     public void updateBodySnake(){
         bodySnake.add(0, position);
+        isThereFood = gameGrid.getSquare(position).getBackground() == Color.RED; //check if there are food
+        gameGrid.changeSquareColor(bodySnake.get(0), Color.BLACK);
 
-        gameGrid.changeSquareColor(bodySnake.get(0), Color.black);
-        gameGrid.changeSquareColor(bodySnake.get(bodySnake.size()-1), Color.white);
-
-        bodySnake.remove(bodySnake.size()-1);
+        if(!isThereFood) {
+            gameGrid.changeSquareColor(bodySnake.get(bodySnake.size() - 1), Color.WHITE);
+            bodySnake.remove(bodySnake.size() - 1);
+        }
     }
 }

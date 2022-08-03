@@ -33,4 +33,5 @@ public class GameGrid {
     public JPanel getContainerSquares() {
         return containerSquares;
     }
+    public JPanel getSquare(int index){ return listSquares.get(index);}
 }

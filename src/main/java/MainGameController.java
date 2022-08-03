@@ -1,3 +1,4 @@
+import food.GeneratorFood;
 import gamewindow.*;
 
 import snake.SnakeMovement;
@@ -11,7 +12,24 @@ public class MainGameController {
 
         gameWindow.setVisible(true);
 
-        new SnakeMovement();
 
+
+        Thread thread01 = new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                new SnakeMovement();
+            }
+        };
+        Thread thread02 = new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                new GeneratorFood();
+            }
+        };
+
+        thread01.start();
+        thread02.start();
     }
 }
