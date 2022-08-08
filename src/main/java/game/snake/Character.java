@@ -1,10 +1,11 @@
 package game.snake;
 
 import game.gamewindow.GameWindowSingleton;
+import settings.GameSettings;
 
 public abstract class Character implements CharacterMovement {
     int position = 0;
-    int numSquaresInSide = GameWindowSingleton.getInstance().getNumSquaresInSide();
+    int numSquaresInSide = GameWindowSingleton.getInstance(GameSettings.getNumOfSquaresInSide(), GameSettings.getSizeOfSquares()).getNumSquaresInSide();
 
     int lastIndexInLine;
     int firstIndexInLine;

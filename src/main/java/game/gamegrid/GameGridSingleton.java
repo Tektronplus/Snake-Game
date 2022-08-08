@@ -3,11 +3,11 @@ package game.gamegrid;
 public class GameGridSingleton {
     private static GameGrid INSTANCE;
 
-    private GameGridSingleton(){}  //private constructor.
+    private GameGridSingleton(){}
 
-    //Methods
     public static GameGrid getInstance(int numSquaresInSide){
-        if (INSTANCE == null){ //if there is no instance available... create new one
+        if (INSTANCE == null){
+
             INSTANCE = new GameGrid(numSquaresInSide);
         }
 
@@ -15,5 +15,9 @@ public class GameGridSingleton {
     }
     public static GameGrid getInstance(){
         return INSTANCE;
+    }
+
+    public static void reset(){
+        INSTANCE = null;
     }
 }

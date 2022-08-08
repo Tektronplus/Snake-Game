@@ -46,7 +46,7 @@ public class MenuColorSnake extends JPanel{
                 case "1" -> GameSettings.setColorSnake(Color.BLACK);
                 case "2" -> GameSettings.setColorSnake(Color.BLUE);
                 case "3" -> GameSettings.setColorSnake(Color.GREEN);
-            };
+            }
         };
 
         btnBlack.addActionListener(listener);

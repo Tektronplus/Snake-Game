@@ -3,14 +3,18 @@ package game.food;
 public class GeneratorFoodSingleton {
     private static GeneratorFood INSTANCE;
 
-    private GeneratorFoodSingleton(){}  //private constructor.
+    private GeneratorFoodSingleton(){}
 
-    //Methods
-    public static GeneratorFood getInstance(){
-        if (INSTANCE == null){ //if there is no instance available... create new one
-            INSTANCE = new GeneratorFood();
+    public static GeneratorFood getInstance(Thread thread){
+
+        if (INSTANCE == null){
+            INSTANCE = new GeneratorFood(thread);
         }
 
         return INSTANCE;
+    }
+
+    public static void reset(){
+        INSTANCE = null;
     }
 }

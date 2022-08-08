@@ -1,17 +1,18 @@
 package game.snake;
 
 import game.keyinput.KeyInput;
+import settings.GameSettings;
 
 import java.util.concurrent.TimeUnit;
 
 public class SnakeMovement {
     //VARIABLES
     Snake snake = new Snake();
-    private boolean whileloop = true;
+    int gameSpeed = GameSettings.getSpeed();
 
     //CONSTRUCTOR
-    public SnakeMovement(){
-        while(whileloop) {
+    public SnakeMovement(Thread thread){
+        while(!thread.isInterrupted()) {
             switch (KeyInput.getKeyPessed()){
                 case 37 -> snake.goLeft();
                 case 38 -> snake.goUp();
@@ -19,20 +20,16 @@ public class SnakeMovement {
                 case 40 -> snake.goDown();
             }
             snake.movement();
-            System.out.println(snake.position);
+            System.out.println("SnakeMovement: "+ snake.position);
 
             //Delay Code
             try {
-                TimeUnit.MILLISECONDS.sleep(250);
+                TimeUnit.MILLISECONDS.sleep(gameSpeed);
             } catch (Exception ex) {
-                System.out.println("Interrupted");
+                System.out.println("Interrupted - SnakeMovement");
+                break;
             }
         }
 
-    }
-
-    //SETTER
-    public void setWhileloop(boolean whileloop) {
-        this.whileloop = whileloop;
     }
 }

@@ -3,14 +3,17 @@ package game.snake;
 public class SnakeMovementSingleton {
     private static SnakeMovement INSTANCE;
 
-    private SnakeMovementSingleton(){}  //private constructor.
+    private SnakeMovementSingleton(){}
 
-    //Methods
-    public static SnakeMovement getInstance(){
-        if (INSTANCE == null){ //if there is no instance available... create new one
-            INSTANCE = new SnakeMovement();
+    public static SnakeMovement getInstance(Thread thread){
+
+        if (INSTANCE == null){
+            INSTANCE = new SnakeMovement(thread);
         }
-
         return INSTANCE;
+    }
+
+    public static void reset(){
+        INSTANCE = null;
     }
 }

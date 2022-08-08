@@ -3,6 +3,7 @@ package game.snake;
 import game.gamegrid.GameGrid;
 import game.gamegrid.GameGridSingleton;
 import game.gamescore.GameScore;
+import settings.GameSettings;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class Snake extends Character {
     //VARIABLES
+    Color colorSnake = GameSettings.getColorSnake();
     GameGrid gameGrid = GameGridSingleton.getInstance();
     GameScore gameScore = new GameScore();
     List<Integer> bodySnake = new ArrayList<>(List.of(0));
@@ -26,9 +28,9 @@ public class Snake extends Character {
         bodySnake.add(0, position);
 
         isThereFood = gameGrid.getSquare(position).getBackground() == Color.RED; //check if there are food
-        isAlive = gameGrid.getSquare(position).getBackground() != Color.BLACK;
+        isAlive = gameGrid.getSquare(position).getBackground() != colorSnake;
 
-        gameGrid.changeSquareColor(bodySnake.get(0), Color.BLACK);
+        gameGrid.changeSquareColor(bodySnake.get(0), colorSnake);
 
         if(!isAlive){gameScore.gameOver();}
         if(!isThereFood) {

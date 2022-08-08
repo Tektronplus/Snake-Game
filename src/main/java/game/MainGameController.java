@@ -1,6 +1,8 @@
 package game;
 
 import game.food.GeneratorFoodSingleton;
+import game.gamegrid.GameGridSingleton;
+import game.gamescore.GameScore;
 import game.gamewindow.GameWindow;
 import game.gamewindow.GameWindowSingleton;
 
@@ -11,29 +13,45 @@ public class MainGameController {
     final int numSquaresInSide = GameSettings.getNumOfSquaresInSide();
     final int sizeOfSquares = GameSettings.getSizeOfSquares();
 
-    public MainGameController(){
-        GameWindow gameWindow = GameWindowSingleton.getInstance(numSquaresInSide, sizeOfSquares);
+    Thread thread01;
+    Thread thread02;
 
+    public MainGameController(){
+        //Reset all Singletons
+        GameScore.zeroedScore();
+        GeneratorFoodSingleton.reset();
+        SnakeMovementSingleton.reset();
+        GameGridSingleton.reset();
+        GameWindowSingleton.reset();
+
+
+        GameWindow gameWindow = GameWindowSingleton.getInstance(numSquaresInSide, sizeOfSquares);
         gameWindow.setVisible(true);
 
 
-
-        Thread thread01 = new Thread(){
+        thread01 = new Thread(){
             @Override
             public void run() {
                 super.run();
-                SnakeMovementSingleton.getInstance();
+                System.out.println("Thread 01");
+                SnakeMovementSingleton.getInstance(thread01);
             }
         };
-        Thread thread02 = new Thread(){
+        thread02 = new Thread(){
             @Override
             public void run() {
                 super.run();
-                GeneratorFoodSingleton.getInstance();
+                System.out.println("Thread 02");
+                GeneratorFoodSingleton.getInstance(thread02);
             }
         };
 
         thread01.start();
         thread02.start();
+    }
+
+    public void interruptThreads(){
+        thread01.interrupt();
+        thread02.interrupt();
     }
 }

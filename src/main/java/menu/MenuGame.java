@@ -1,9 +1,6 @@
 package menu;
 
-import menu.components.MenuColorSnake;
-import menu.components.MenuDifficult;
-import menu.components.MenuStartGame;
-import menu.components.MenuTitle;
+import menu.components.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +8,8 @@ import java.awt.*;
 public class MenuGame extends JFrame {
     //Panels of Menu
     JPanel panelTitleGame = new MenuTitle();
-    JPanel panelSetDifficult = new MenuDifficult();
+    JPanel panelSizeGame = new MenuSize();
+    JPanel panelSpeedGame = new MenuSpeed();
     JPanel panelSetColourSnake = new MenuColorSnake();
     JPanel panelStartGame = new MenuStartGame(this);
 
@@ -20,13 +18,14 @@ public class MenuGame extends JFrame {
 
         //Settings of JFrame
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(4,1 ));
+        setLayout(new GridLayout(5,1 ));
         setSize(400, 400);
         setResizable(false);
 
         //Adding components of menu
         add(panelTitleGame);
-        add(panelSetDifficult);
+        add(panelSizeGame);
+        add(panelSpeedGame);
         add(panelSetColourSnake);
         add(panelStartGame);
 

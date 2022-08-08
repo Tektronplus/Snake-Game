@@ -1,13 +1,16 @@
 package game.gamescore;
 
-import game.food.GeneratorFoodSingleton;
+import game.MainGameControllerSingleton;
 import game.gamewindow.GameWindow;
 import game.gamewindow.GameWindowSingleton;
-import game.snake.SnakeMovementSingleton;
+
+import menu.MenuGame;
+import menu.components.MenuTitle;
+import settings.GameSettings;
 
 public class GameScore {
     //VARIABLES
-    GameWindow gameWindow = GameWindowSingleton.getInstance();
+    GameWindow gameWindow = GameWindowSingleton.getInstance(GameSettings.getNumOfSquaresInSide(), GameSettings.getSizeOfSquares());
     static int score = 0;
 
     //METHODS
@@ -17,8 +20,16 @@ public class GameScore {
     }
 
     public void gameOver(){
-        gameWindow.setTitle("GAME OVER - final score: "+ score);
-        GeneratorFoodSingleton.getInstance().setWhileLoop(false);
-        SnakeMovementSingleton.getInstance().setWhileloop(false);
+        MenuTitle.setTitle("SCORE: "+ score);
+        MainGameControllerSingleton.getInstance().interruptThreads();
+
+
+        MainGameControllerSingleton.reset();
+
+        GameWindowSingleton.getInstance(GameSettings.getNumOfSquaresInSide(), GameSettings.getSizeOfSquares()).setVisible(false);
+        new MenuGame();
+    }
+    public static void zeroedScore(){
+        score = 0;
     }
 }
